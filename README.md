@@ -20,6 +20,7 @@ docker run --detach \
     -v /data/shadowsocks:/etc/shadowsocks \
     ghostry/slc:latest
 docker container list
+docker container restart gslc
 ```
 
 # 自己构建
