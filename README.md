@@ -13,12 +13,12 @@ sudo usermod -aG docker username
 docker container list
 docker pull ghostry/slc:latest
 
-docker container stop gslc && docker container rm gslc && \
+docker container stop gslc && docker container rm gslc
 docker run --detach \
-    --publish 9000-9002:9000-9002 \
+-p 1080:1080 \
     --name gslc \
     --restart always \
-    --volume /data/shadowsocks:/etc/shadowsocks \
+    -v /data/shadowsocks:/etc/shadowsocks \
     ghostry/slc:latest
 ```
 
