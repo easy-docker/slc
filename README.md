@@ -10,17 +10,21 @@ sudo usermod -aG docker username
 ```
 # 使用
 ```
-docker pull ghostry/slc:latest
-
-docker container stop gslc && docker container rm gslc
+docker pull ghostry/slc
+gslcname="gslc"
+portnum=1080
+docker container stop $gslcname
+docker container rm $gslcname
 docker run --detach \
-    -p 1080:1080 \
-    --name gslc \
+    --user $(id -u):$(id -g) \
+    -p $portnum:1080 \
+    --name $gslcname \
     --restart always \
-    -v /data/shadowsocks:/etc/shadowsocks \
-    ghostry/slc:latest
-docker container list
-docker container restart gslc
+    -v ~/.$gslcname:/etc/shadowsocks \
+    ghostry/slc
+docker container ls
+vi ~/.$gslcname/local.json
+docker container restart $gslcname
 ```
 
 # 自己构建
